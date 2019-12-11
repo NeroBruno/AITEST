@@ -26,7 +26,7 @@ public class NPC : MonoBehaviour
 
     public void Update()
     {
-        
+
     }
 
     public ConnectedWaypoint[] PatrolPoints

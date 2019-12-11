@@ -16,6 +16,7 @@ public enum FSMStateType
 {
     IDLE,
     PATROL,
+    CHASE,
 };
 
 public abstract class AbstractFSMState : ScriptableObject

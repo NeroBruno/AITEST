@@ -14,6 +14,7 @@ public class IdleState : AbstractFSMState
     {
         base.OnEnable();
         StateType = FSMStateType.IDLE;
+        
     }
 
     public override bool EnterState()
@@ -25,7 +26,7 @@ public class IdleState : AbstractFSMState
             Debug.Log("Entered Idle state");
             _totalDuration = 0f;
         }
-        
+
         return EnteredState;
     }
 
