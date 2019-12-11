@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="ChaseState", menuName = "UnityFSM/States/Chase")]
 public class ChaseState : AbstractFSMState
 {
+    private Transform _chaseTransform;
     public override void OnEnable()
     {
         base.OnEnable();
