@@ -40,6 +40,7 @@ public class PatrolState : AbstractFSMState
 
                 _npcMaterial.material.color = Color.blue;
                 SetDestination(_patrolPoints[_patrolPointIndex]);
+                Debug.Log("Entered patrol state");
                 EnteredState = true;
             }
         }
@@ -57,11 +58,18 @@ public class PatrolState : AbstractFSMState
                 _fsm.EnterState(FSMStateType.IDLE);
             }
 
-            if (Vector3.Distance(_navMeshAgent.transform.position, _playerTransform.transform.position) <= 3f)
+            if (Vector3.Distance(_navMeshAgent.transform.position, _playerTransform.transform.position) <= 3.5f)
             {
                 _fsm.EnterState((FSMStateType.CHASE));
             }
         }
+    }
+
+    public override bool ExitState()
+    {
+        base.ExitState();
+        Debug.Log("Exiting patrol state");
+        return true;
     }
 
     private void SetDestination(ConnectedWaypoint destination)

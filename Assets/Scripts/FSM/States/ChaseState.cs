@@ -26,6 +26,7 @@ public class ChaseState : AbstractFSMState
                 _npcMaterial.material.color = Color.red;
                 SetDestination(_playerTransform);
                 EnteredState = true;
+                Debug.Log("Entered Chase state");
             }
         }
 
@@ -39,7 +40,7 @@ public class ChaseState : AbstractFSMState
             SetDestination(_playerTransform);
         }
 
-        if (Vector3.Distance(_navMeshAgent.transform.position, _playerTransform.transform.position) > 3f)
+        if (Vector3.Distance(_navMeshAgent.transform.position, _playerTransform.transform.position) > 3.5f)
         {
             _fsm.EnterState((FSMStateType.IDLE));
         }
