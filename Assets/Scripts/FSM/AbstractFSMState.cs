@@ -28,6 +28,8 @@ public abstract class AbstractFSMState : ScriptableObject
     protected NavMeshAgent _navMeshAgent;
     protected NPC _npc;
     protected FiniteStateMachine _fsm;
+    protected Transform _playerTransform;
+    protected Renderer _npcMaterial;
     public virtual void OnEnable()
     {
         ExecutionState = ExecutionState.NONE;
@@ -75,6 +77,21 @@ public abstract class AbstractFSMState : ScriptableObject
         if (npc != null)
         {
             _npc = npc;
+        }
+    }
+    public virtual void SetPlayerTransform(Transform player)
+    {
+        if (player != null)
+        {
+            _playerTransform = player;
+        }
+    }
+
+    public virtual void SetMaterial(Renderer material)
+    {
+        if (material != null)
+        {
+            _npcMaterial = material;
         }
     }
 }

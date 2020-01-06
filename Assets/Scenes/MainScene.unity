@@ -334,9 +334,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c480f46948d6640abb5ae173715c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 1165128170}
   _validStates:
   - {fileID: 11400000, guid: b37510bb46df70a488c660b145312617, type: 2}
   - {fileID: 11400000, guid: 2261a665245adc5479d847b6e00a5c5a, type: 2}
+  - {fileID: 11400000, guid: 6c05fd2c9fce960409823bfcad302a2a, type: 2}
 --- !u!1 &262749800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,9 +1193,10 @@ GameObject:
   - component: {fileID: 1165128167}
   - component: {fileID: 1165128171}
   - component: {fileID: 1165128172}
+  - component: {fileID: 1165128173}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1301,6 +1304,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+--- !u!65 &1165128173
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165128166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1173521522
 GameObject:
   m_ObjectHideFlags: 0

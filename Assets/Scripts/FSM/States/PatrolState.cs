@@ -38,6 +38,7 @@ public class PatrolState : AbstractFSMState
                     _patrolPointIndex = (_patrolPointIndex + 1) % _patrolPoints.Length;
                 }
 
+                _npcMaterial.material.color = Color.blue;
                 SetDestination(_patrolPoints[_patrolPointIndex]);
                 EnteredState = true;
             }
@@ -54,6 +55,11 @@ public class PatrolState : AbstractFSMState
                     _patrolPoints[_patrolPointIndex].transform.position) <= 1f)
             {
                 _fsm.EnterState(FSMStateType.IDLE);
+            }
+
+            if (Vector3.Distance(_navMeshAgent.transform.position, _playerTransform.transform.position) <= 3f)
+            {
+                _fsm.EnterState((FSMStateType.CHASE));
             }
         }
     }

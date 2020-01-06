@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="ChaseState", menuName = "UnityFSM/States/Chase")]
 public class ChaseState : AbstractFSMState
 {
-    private Transform _chaseTransform;
     public override void OnEnable()
     {
         base.OnEnable();
@@ -14,17 +14,49 @@ public class ChaseState : AbstractFSMState
 
     public override bool EnterState()
     {
-        return base.EnterState();
+        EnteredState = false;
+        if (base.EnterState())
+        {
+            if (_playerTransform == null)
+            {
+                Debug.LogError("No player transform!");
+            }
+            else
+            {
+                _npcMaterial.material.color = Color.red;
+                SetDestination(_playerTransform);
+                EnteredState = true;
+            }
+        }
+
+        return EnteredState;
     }
 
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        if (EnteredState)
+        {
+            SetDestination(_playerTransform);
+        }
+
+        if (Vector3.Distance(_navMeshAgent.transform.position, _playerTransform.transform.position) > 3f)
+        {
+            _fsm.EnterState((FSMStateType.IDLE));
+        }
     }
 
     public override bool ExitState()
     {
-        return base.ExitState();
+        base.ExitState();
+        Debug.Log("Exited chase state.");
+        return true;
     }
 
+    private void SetDestination(Transform player)
+    {
+        if (_navMeshAgent != null && player != null)
+        {
+            _navMeshAgent.SetDestination(player.transform.position);
+        }
+    }
 }

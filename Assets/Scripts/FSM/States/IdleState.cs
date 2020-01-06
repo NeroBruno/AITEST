@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "IdleState", menuName = "UnityFSM/States/Idle")]
 public class IdleState : AbstractFSMState
 {
-    [SerializeField] 
+    [SerializeField]
     private float _idleDuration = 3f;
 
     private float _totalDuration;
@@ -21,8 +21,11 @@ public class IdleState : AbstractFSMState
     {
         EnteredState = base.EnterState();
 
+        
+
         if (EnteredState)
         {
+            _npcMaterial.material.color = Color.white;
             Debug.Log("Entered Idle state");
             _totalDuration = 0f;
         }
@@ -40,6 +43,11 @@ public class IdleState : AbstractFSMState
             if (_totalDuration >= _idleDuration)
             {
                 _fsm.EnterState((FSMStateType.PATROL));
+            }
+
+            if (Vector3.Distance(_navMeshAgent.transform.position, _playerTransform.transform.position) <= 3f)
+            {
+                _fsm.EnterState((FSMStateType.CHASE));
             }
         }
     }

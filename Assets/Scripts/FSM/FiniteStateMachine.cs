@@ -6,9 +6,9 @@ using UnityEngine.AI;
 
 public class FiniteStateMachine : MonoBehaviour
 {
-//    [SerializeField] 
-//    private AbstractFSMState _startingState;
-    
+    //    [SerializeField] 
+    //    private AbstractFSMState _startingState;
+    public Transform playerTransform;
     private AbstractFSMState _currentState;
 
     [SerializeField]
@@ -22,12 +22,16 @@ public class FiniteStateMachine : MonoBehaviour
 
         NavMeshAgent navMeshAgent = GetComponent<NavMeshAgent>();
         NPC npc = GetComponent<NPC>();
+        Transform player = playerTransform;
+        Renderer material = GetComponent<MeshRenderer>();
         
         foreach (var state in _validStates)
         {
             state.SetExecutingFSM(this);
             state.SetExecutingNPC(npc);
             state.SetNavMeshAgent(navMeshAgent);
+            state.SetPlayerTransform(player);
+            state.SetMaterial(material);
             _fsmStates.Add(state.StateType, state);
         }
     }

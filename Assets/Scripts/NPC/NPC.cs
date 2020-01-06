@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(FiniteStateMachine))]
 public class NPC : MonoBehaviour
@@ -32,5 +33,14 @@ public class NPC : MonoBehaviour
     public ConnectedWaypoint[] PatrolPoints
     {
         get => _patrolPoints;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
     }
 }
